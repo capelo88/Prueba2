@@ -119,24 +119,44 @@ const HistorialVeterinario: React.FC = () => {
     isEdit = false
   ) => {
     if (tipo === "vacunacion" && (!modelo.tipoVacuna || !modelo.fecha)) {
-      return presentAlert("Faltan datos", "Tipo de vacuna y fecha son obligatorios.");
+      return presentAlert({
+        header: "Faltan datos",
+        message: "Tipo de vacuna y fecha son obligatorios.",
+        buttons: ["OK"],
+        });
+
     }
 
     if (
       (tipo === "desparasitacion" || tipo === "antipulgas") &&
       (!modelo.nombreMedicamento || !modelo.fecha)
     ) {
-      return presentAlert("Faltan datos", "Medicamento y fecha son obligatorios.");
+      return presentAlert({
+        header: "Faltan datos",
+        message: "Medicamento y fecha son obligatorios.",
+        buttons: ["OK"],
+        });
+
     }
 
     if (tipo === "citas" && (!modelo.fecha || !modelo.hora || !modelo.veterinaria)) {
-      return presentAlert("Faltan datos", "Fecha, hora y veterinaria son obligatorios.");
+      return presentAlert({
+        header: "Faltan datos",
+        message: "Fecha, hora y veterinaria son obligatorios.",
+        buttons: ["OK"],
+        });
+
     }
 
     const arr = getArray(tipo);
 
     if (!isEdit && arr.length >= 50) {
-      return presentAlert("Límite alcanzado", "Máximo 50 registros.");
+      return presentAlert({
+        header: "Límite alcanzado",
+        message: "Máximo 50 registros.",
+        buttons: ["OK"],
+      });
+
     }
 
     if (isEdit && editarIndex[tipo] !== null) {
@@ -152,7 +172,12 @@ const HistorialVeterinario: React.FC = () => {
     saveMascotas(updated);
     setMascota(updated);
 
-    presentAlert("Éxito", "Guardado correctamente.");
+    presentAlert({
+      header: "Éxito",
+      message: "Guardado correctamente.",
+      buttons: ["OK"],
+    });
+
 
     cancelar(tipo);
   };
