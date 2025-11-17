@@ -1,8 +1,8 @@
+/* Fondo y contenedor principal */
 .fondo {
   --background: none;
 }
 
-/* Franja superior e inferior */
 .franja-gruesa-superior,
 .franja-gruesa-inferior {
   width: 100%;
@@ -14,14 +14,16 @@
 
 .franja-gruesa-superior {
   top: 0;
+  left: 0;
 }
 
-.franja-gruesa-inferior,
-.footer-bar {
+.franja-gruesa-inferior {
   bottom: 0;
+  left: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-left: 30px;
 }
 
 /* Foto mascota */
@@ -40,14 +42,14 @@
 
 /* Tarjeta */
 .pet-card {
-  margin-top: 20px;
-  border-radius: 20px;
-  background: #fff;
+  margin: 20px;
   padding: 15px;
+  background: #ffffff;
+  border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Info */
+/* Info mascota */
 .pet-info p {
   margin: 6px 0;
   font-size: 15px;
@@ -56,10 +58,10 @@
 
 /* Acciones */
 .pet-actions {
-  margin-top: 10px;
   display: flex;
   justify-content: flex-end;
   gap: 15px;
+  margin-top: 10px;
 }
 
 .edit-icon, .delete-icon {
@@ -68,21 +70,28 @@
   transition: 0.2s ease;
 }
 
-.edit-icon:hover { color: var(--ion-color-success); transform: scale(1.2); }
-.delete-icon:hover { color: var(--ion-color-danger); transform: scale(1.2); }
+.edit-icon:hover {
+  color: var(--ion-color-success);
+  transform: scale(1.2);
+}
+
+.delete-icon:hover {
+  color: var(--ion-color-danger);
+  transform: scale(1.2);
+}
 
 /* Botón agregar */
 .button-container {
-  margin-top: 30px;
+  margin: 40px 20px;
   text-align: center;
 }
 
 /* Footer */
 .footer-icons {
   display: flex;
+  justify-content: flex-end;
   gap: 25px;
   padding-right: 40px;
-  color: #000;
 }
 
 .footer-icon {

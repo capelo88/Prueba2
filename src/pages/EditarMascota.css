@@ -1,9 +1,13 @@
-/* Fondo */
+/* ============================================
+   🎨 FONDO GENERAL
+============================================ */
 .fondo {
   --background: none;
 }
 
-/* Franjas azules */
+/* ============================================
+   🎨 FRANJAS SUPERIOR E INFERIOR
+============================================ */
 .franja-gruesa-superior,
 .franja-gruesa-inferior {
   width: 100%;
@@ -13,7 +17,7 @@
   z-index: 9999;
 }
 
-/* Franja superior con flecha y título */
+/* ------- Parte superior ------- */
 .franja-gruesa-superior {
   top: 0;
   left: 0;
@@ -24,7 +28,7 @@
 
 .back-icon {
   font-size: 28px;
-  color: #fff;
+  color: #110505;
   cursor: pointer;
   margin-right: 10px;
   transition: transform 0.2s ease;
@@ -34,15 +38,15 @@
 }
 
 .titulo {
-  color: #fff;
+  color: #f8f0f0 !important;   /* 🔥 Título NEGRO */
   font-size: 1.6rem;
   text-align: center;
-  flex-grow: 1;
 }
 
-/* Franja inferior con iconos */
+/* ------- Parte inferior ------- */
 .franja-gruesa-inferior {
   bottom: 0;
+  left: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -60,16 +64,16 @@
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-
 .footer-icon:hover {
   transform: scale(1.2);
-  color: inherit !important;
 }
 
-/* Contenedor */
+/* ============================================
+   📦 CONTENEDOR PRINCIPAL
+============================================ */
 .contenedor {
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 110px;
+  margin-bottom: 120px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -77,7 +81,9 @@
   gap: 20px;
 }
 
-/* Foto */
+/* ============================================
+   🐶 FOTO DE LA MASCOTA
+============================================ */
 .foto-container {
   display: flex;
   flex-direction: column;
@@ -89,13 +95,12 @@
   height: 160px;
   border: 3px solid var(--ion-color-primary);
   border-radius: 10px;
-  background: #f3f3f3;
+  background: #020101;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   cursor: pointer;
-  margin: 25px;
 }
 
 .foto-cuadro img {
@@ -105,46 +110,91 @@
 }
 
 .foto-cuadro span {
-  color: #777;
+  color: #030202;
   font-style: italic;
 }
 
-/* formulario */
+/* ============================================
+   📝 FORMULARIO Y CAMPOS
+============================================ */
 .formulario {
+  width: 85%;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 80%;
 }
 
 .campo {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 5px;
 }
 
 label {
-  flex: 1;
+  color: #000 !important;     /* LABEL negro */
+  font-weight: bold;
+}
+
+/* ============================================
+   🔤 ESTILOS DE TEXTO PARA ION-INPUT
+============================================ */
+
+/* TEXTO NEGRO */
+ion-input {
+  --color: #000 !important;
+  --placeholder-color: #555 !important;
+}
+
+ion-input::part(native) {
+  color: #000 !important;      /* valor del input */
+}
+
+ion-input::part(placeholder) {
+  color: #555 !important;      /* placeholder */
+}
+
+/* =========================================
+   🎨 INPUT ESTÉTICO — MÁS ANGOSTO Y LIMPIO
+   ========================================= */
+.formulario {
+  width: 70%;                /* 🔥 REDUCE EL ANCHO GENERAL */
+  max-width: 330px;          /* 🔥 LIMITE PARA QUE SE VEA ELEGANTE */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Cada línea (label + input) */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* LABEL */
+.campo label {
   font-weight: bold;
   color: #000;
+  font-size: 0.95rem;
 }
-
+/* ======== BORDES VISIBLES EN LOS 4 LADOS ======== */
 ion-input {
-  flex: 2;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding-left: 8px;
+  --padding-start: 10px;
+  --padding-end: 10px;
+
+  border: 2px solid #292222 !important;   /* ⭐ BORDE COMPLETO */
+  border-radius: 12px !important;          /* ⭐ ESQUINAS REDONDAS */
+
+  background: #ffffff !important;          /* ⭐ FONDO BLANCO */
+  color: #000 !important;                  /* ⭐ TEXTO NEGRO */
+
+  min-height: 40px;                        /* ⭐ ALTURA UNIFORME */
+  display: flex;
+  align-items: center;
 }
 
-/* Botón */
-.button-container {
-  width: 80%;
-  margin-top: 20px;
-  margin-bottom: 80px;
-}
-
-/* evitar fondos globales */
-.fondo {
-  background: none !important;
+/* Forzar que el input interno NO tape el borde */
+ion-input::part(native) {
+  border: none !important;   /* ❌ Elimina el borde interno que oculta el tuyo */
+  color: #000 !important;
 }

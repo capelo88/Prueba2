@@ -10,6 +10,8 @@ import InformacionMascota from "./pages/InformacionMascota";
 import AgregarMascota from "./pages/AgregarMascota";
 import EditarMascota from "./pages/EditarMascota";
 import Contactanos from "./pages/Contactanos";
+import HistorialVeterinario from "./pages/HistorialVeterinario";
+
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -59,9 +61,16 @@ const App: React.FC = () => {
           </Route>
 
           {/* ⭐ RUTA EDITAR MASCOTA */}
-          <Route exact path="/editar-mascota">
-            <EditarMascota />
+         <Route exact path="/editar-mascota/:index">
+          <EditarMascota />
+         </Route>
+
+
+          {/* ⭐ RUTA HISTORIAL VETERINARIO */}
+          <Route exact path="/historial/:index">
+           <HistorialVeterinario />
           </Route>
+
           
           {/* ⭐ RUTA CONTÁCTANOS */}
           <Route exact path="/contactanos">

@@ -2,48 +2,78 @@ import React, { useEffect, useState } from "react";
 import {
   IonPage,
   IonContent,
-  IonHeader,
+  IonButton,
+  IonIcon,
   IonToolbar,
-  IonTitle,
+  IonHeader,
   IonButtons,
   IonBackButton,
-  IonIcon,
-  IonButton
+  useIonAlert,
+  useIonViewWillEnter    //
 } from "@ionic/react";
 import { createOutline, trashOutline, helpCircleSharp, callSharp } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
 import "./InformacionMascota.css";
 
 const InformacionMascota: React.FC = () => {
-  const history = useHistory();
   const [mascotas, setMascotas] = useState<any[]>([]);
+  const [presentAlert] = useIonAlert();
+  const history = useHistory();
+
 
   /* === Cargar mascotas al entrar === */
-  useEffect(() => {
-    cargarMascotas();
-  }, []);
+   useIonViewWillEnter(() => {
+  cargarMascotas();   // ⭐ SE EJECUTA SIEMPRE QUE REGRESAS
+  });
 
   const cargarMascotas = () => {
     const data = JSON.parse(localStorage.getItem("mascotas") || "[]");
     setMascotas(data);
   };
 
+  /* === Confirmar eliminar === */
+  const confirmarEliminar = (index: number) => {
+    presentAlert({
+      header: "Eliminar mascota",
+      message: "¿Estás seguro de eliminar esta mascota?",
+      buttons: [
+        { text: "Cancelar", role: "cancel" },
+        {
+          text: "Eliminar",
+          handler: () => eliminarMascota(index),
+        },
+      ],
+    });
+  };
+
   const eliminarMascota = (index: number) => {
     const nuevas = [...mascotas];
     nuevas.splice(index, 1);
-    setMascotas(nuevas);
     localStorage.setItem("mascotas", JSON.stringify(nuevas));
+    setMascotas(nuevas);
   };
 
-  const editarMascota = (index: number) => {
-  history.push("/editar-mascota", { index }); // SIN /0 en la URL
+
+
+
+  /* === Editar === */
+ const editarMascota = (index: number) => {
+  history.push(`/editar-mascota/${index}`);
 };
 
 
+
+  /* === Ver historial veterinario === */
+  const verHistorial = (index: number) => {
+    history.push(`/historial/${index}`);
+  };
+
+  /* === Agregar Mascota === */
   const agregarMascota = () => {
     history.push("/agregar-mascota");
   };
 
+  /* === Ir a Contactanos === */
   const irAContactanos = () => {
     history.push("/contactanos");
   };
@@ -56,41 +86,49 @@ const InformacionMascota: React.FC = () => {
           <IonButtons slot="start">
             <IonBackButton defaultHref="/menu" />
           </IonButtons>
-          <IonTitle>Información de la Mascota</IonTitle>
+          <h2 style={{ color: "#fff", marginLeft: "10px" }}>Información de la Mascota</h2>
         </IonToolbar>
       </IonHeader>
 
-      {/* CONTENIDO */}
+      {/* CONTENT */}
       <IonContent fullscreen className="fondo">
 
-        {/* LISTA DE MASCOTAS */}
         {mascotas.map((mascota, i) => (
           <div key={i} className="pet-card">
 
-            <div className="pet-info">
-              <div className="pet-photo">
-                <img
-                  src={mascota.foto || "assets/foto-default.png"}
-                  alt={mascota.nombre}
-                />
-              </div>
+            {/* Foto */}
+            <div className="pet-photo">
+              <img
+                src={mascota.foto || "assets/foto-default.png"}
+                alt={mascota.nombre}
+              />
+            </div>
 
+            {/* Datos */}
+            <div className="pet-info">
               <p><strong>Nombre:</strong> {mascota.nombre}</p>
               <p><strong>Especie:</strong> {mascota.especie}</p>
               <p><strong>Raza:</strong> {mascota.raza}</p>
               <p><strong>Fecha de nacimiento:</strong> {mascota.fechaNacimiento}</p>
             </div>
 
+            {/* Acciones */}
             <div className="pet-actions">
+
+              <IonButton size="small" fill="outline" onClick={() => verHistorial(i)}>
+                Historia
+              </IonButton>
+
               <IonIcon
                 icon={createOutline}
                 className="edit-icon"
                 onClick={() => editarMascota(i)}
               />
+
               <IonIcon
                 icon={trashOutline}
                 className="delete-icon"
-                onClick={() => eliminarMascota(i)}
+                onClick={() => confirmarEliminar(i)}
               />
             </div>
           </div>
@@ -99,13 +137,13 @@ const InformacionMascota: React.FC = () => {
         {/* BOTÓN AGREGAR */}
         <div className="button-container">
           <IonButton expand="block" color="primary" onClick={agregarMascota}>
-            Agregar mascota
+            Agregar Mascota
           </IonButton>
         </div>
       </IonContent>
 
       {/* FOOTER */}
-      <IonToolbar className="footer-bar" color="primary">
+      <div className="franja-gruesa-inferior">
         <div className="footer-icons">
           <IonIcon
             icon={helpCircleSharp}
@@ -118,7 +156,7 @@ const InformacionMascota: React.FC = () => {
             onClick={irAContactanos}
           />
         </div>
-      </IonToolbar>
+      </div>
     </IonPage>
   );
 };

@@ -217,7 +217,7 @@ const AgregarMascota: React.FC = () => {
           {/* Botón Guardar */}
           <div className="button-container">
             <IonButton expand="block" color="primary" onClick={guardar}>
-              Guardar
+              guardar
             </IonButton>
           </div>
         </div>

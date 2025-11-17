@@ -1,8 +1,13 @@
+/* =========================================
+   FONDO GENERAL
+========================================= */
 .fondo {
   --background: none;
 }
 
-/* --- FRANJA SUPERIOR --- */
+/* =========================================
+   FRANJA SUPERIOR
+========================================= */
 .franja-gruesa-superior {
   width: 100%;
   height: 2cm;
@@ -12,50 +17,43 @@
   left: 0;
   display: flex;
   align-items: center;
-  padding-left: 15px;
   z-index: 9999;
 }
 
-.flecha-regreso {
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.flecha-regreso:hover {
-  transform: scale(1.2);
-}
-
-/* --- CONTENIDO CENTRAL --- */
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
 .contenedor {
-  margin-top: 120px; /* separa del borde azul superior */
+  margin-top: 100px; /* 🔥 Controla la distancia del título a la franja azul */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
+/* Título principal */
 .titulo {
   font-size: 2rem;
-  color: black;
+  color: black !important;
   text-shadow: 2px 2px 5px #000;
-  margin-bottom: 25px;
+  margin-bottom: 10px; /* 🔥 Imagen queda pegada aquí */
 }
 
-/* --- ELEMENTO CENTRAL --- */
+/* =========================================
+   IMAGEN CENTRAL (Información de Mascota)
+========================================= */
 .menu-item-centro {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 25px;
+  margin-top: 10px; /* 🔥 Muy pegada al título */
+  margin-bottom: 450px !important;
 }
 
 .menu-item-centro img {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   object-fit: contain;
-  border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -64,46 +62,28 @@
   transform: scale(1.1);
 }
 
-.menu-item-centro p {
+.menu-texto {
+  color: black !important;
   font-weight: bold;
   margin-top: 10px;
-}
-
-/* --- FILAS DE OPCIONES --- */
-.fila {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; /* permite que se adapte en móvil */
-  gap: 30px;
-  margin-bottom: 25px;
-}
-
-.menu-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.menu-item img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.2s;
 }
 
-.menu-item img:hover {
-  transform: scale(1.1);
+/* Frase */
+.frase-menu {
+  margin-top: 5px;
+  margin-bottom: 20px !important;
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #000000;
+  padding: 0 15px;
+  
 }
 
-.menu-item p {
-  font-weight: bold;
-  margin-top: 8px;
-}
-
-/* --- FRANJA INFERIOR CON ICONOS --- */
+/* =========================================
+   FRANJA INFERIOR
+========================================= */
 .franja-gruesa-inferior {
   width: 100%;
   height: 2cm;
@@ -119,14 +99,12 @@
 
 .iconos-inferiores {
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 25px;
 }
 
 .btn-icon {
   font-size: 28px;
-  color: rgb(0, 0, 0);
+  color: black;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -135,37 +113,20 @@
   transform: scale(1.2);
 }
 
-/* --- RESPONSIVE PARA MÓVILES --- */
+/* =========================================
+   RESPONSIVE
+========================================= */
 @media (max-width: 600px) {
-  .franja-gruesa-superior {
-    height: 1.5cm;
-    padding-left: 10px;
-  }
-
-  .franja-gruesa-inferior {
-    height: 1.5cm;
-  }
-
-  .btn-icon {
-    font-size: 24px;
-  }
-
-  .iconos-inferiores {
-    gap: 20px;
-  }
-
-  .menu-item img,
-  .menu-item-centro img {
-    width: 90px;
-    height: 90px;
-  }
-
   .titulo {
     font-size: 1.6rem;
   }
 
-  .contenedor {
-    margin-top: 100px;
+  .menu-item-centro img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .frase-menu {
+    font-size: 1.1rem;
   }
 }
-

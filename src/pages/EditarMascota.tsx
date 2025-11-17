@@ -5,49 +5,49 @@ import {
   IonIcon,
   IonButton,
   IonInput,
-  useIonAlert,
+  useIonAlert
 } from "@ionic/react";
 import { arrowBack, helpCircleOutline, callOutline } from "ionicons/icons";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import "./EditarMascota.css";
-
-interface LocationState {
-  index?: number;
-}
 
 const EditarMascota: React.FC = () => {
   const history = useHistory();
-  const location = useLocation<LocationState>();
   const [presentAlert] = useIonAlert();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  // 👇 Índice recibido desde la navegación (state)
-  const mascotaIndex = location.state?.index ?? 0;
+  // ⭐ PARAMETRO CORRECTO DESDE LA URL
+  const { index } = useParams<{ index: string }>();
+  const mascotaIndex = Number(index);
 
+  // 🟦 CAMPOS
   const [nombre, setNombre] = useState("");
   const [especie, setEspecie] = useState("");
   const [raza, setRaza] = useState("");
   const [fechaNacimiento, setFechaNacimiento] = useState("");
   const [foto, setFoto] = useState<string | null>(null);
 
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-  /* === Cargar datos al entrar === */
+  // 🟦 CARGAR DATOS CORRECTAMENTE
   useEffect(() => {
     const mascotas = JSON.parse(localStorage.getItem("mascotas") || "[]");
+
+    if (!mascotas[mascotaIndex]) {
+      history.replace("/informacion-mascota");
+      return;
+    }
+
     const mascota = mascotas[mascotaIndex];
 
-    if (mascota) {
-      setNombre(mascota.nombre);
-      setEspecie(mascota.especie);
-      setRaza(mascota.raza);
-      setFechaNacimiento(mascota.fechaNacimiento);
-      setFoto(mascota.foto);
-    }
-  }, [mascotaIndex]);
+    setNombre(mascota.nombre);
+    setEspecie(mascota.especie);
+    setRaza(mascota.raza);
+    setFechaNacimiento(mascota.fechaNacimiento);
+    setFoto(mascota.foto || null);
+  }, [mascotaIndex, history]);
 
-  /* === Subir foto === */
-  const onFileSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  // 🟦 SUBIR FOTO
+  const onFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (!file) return;
 
     const reader = new FileReader();
@@ -55,16 +55,16 @@ const EditarMascota: React.FC = () => {
     reader.readAsDataURL(file);
   };
 
-  /* === Guardar cambios === */
+  // 🟦 GUARDAR DATOS
   const guardarCambios = async () => {
-    let mascotas = JSON.parse(localStorage.getItem("mascotas") || "[]");
+    const mascotas = JSON.parse(localStorage.getItem("mascotas") || "[]");
 
     mascotas[mascotaIndex] = {
       nombre,
       especie,
       raza,
       fechaNacimiento,
-      foto: foto || "assets/foto-default.png",
+      foto: foto || "assets/foto-default.png"
     };
 
     localStorage.setItem("mascotas", JSON.stringify(mascotas));
@@ -72,126 +72,85 @@ const EditarMascota: React.FC = () => {
     await presentAlert({
       header: "Éxito",
       message: "Los cambios se han guardado correctamente.",
-      buttons: ["OK"],
+      buttons: ["OK"]
     });
 
     history.push("/informacion-mascota");
   };
 
-  /* regresar */
-  const regresar = () => {
-    history.goBack();
-  };
-
-  const irContacto = () => {
-    history.push("/contactanos");
-  };
+  const regresar = () => history.goBack();
+  const irContacto = () => history.push("/contactanos");
 
   return (
     <IonPage>
       <IonContent className="fondo">
-        {/* Franja superior */}
+
+        {/* 🔷 Franja superior */}
         <div className="franja-gruesa-superior">
-          <IonIcon
-            icon={arrowBack}
-            className="back-icon"
-            onClick={regresar}
-          />
+          <IonIcon icon={arrowBack} className="back-icon" onClick={regresar} />
           <h1 className="titulo">Editar Mascota</h1>
         </div>
 
-        {/* Formulario */}
+        {/* 🔷 Contenido */}
         <div className="contenedor">
-          {/* FOTO */}
+
+          {/* Foto */}
           <div className="foto-container">
-            <div
-              className="foto-cuadro"
-              onClick={() => fileInputRef.current?.click()}
-            >
+            <div className="foto-cuadro" onClick={() => fileInputRef.current?.click()}>
               {foto ? (
-                <img src={foto} alt="Foto de mascota" />
+                <img src={foto} alt="foto mascota" />
               ) : (
                 <span>Seleccionar foto</span>
               )}
             </div>
 
             <input
-              type="file"
-              accept="image/*"
-              hidden
               ref={fileInputRef}
+              type="file"
+              hidden
+              accept="image/*"
               onChange={onFileSelected}
             />
           </div>
 
+          {/* Formulario */}
           <div className="formulario">
             <div className="campo">
-              <label>
-                <strong>Nombre:</strong>
-              </label>
-              <IonInput
-                value={nombre}
-                onIonChange={(e) => setNombre(e.detail.value || "")}
-              />
+              <label><strong>Nombre:</strong></label>
+              <IonInput value={nombre} onIonChange={(e) => setNombre(e.detail.value!)} />
             </div>
 
             <div className="campo">
-              <label>
-                <strong>Especie:</strong>
-              </label>
-              <IonInput
-                value={especie}
-                onIonChange={(e) => setEspecie(e.detail.value || "")}
-              />
+              <label><strong>Especie:</strong></label>
+              <IonInput value={especie} onIonChange={(e) => setEspecie(e.detail.value!)} />
             </div>
 
             <div className="campo">
-              <label>
-                <strong>Raza:</strong>
-              </label>
-              <IonInput
-                value={raza}
-                onIonChange={(e) => setRaza(e.detail.value || "")}
-              />
+              <label><strong>Raza:</strong></label>
+              <IonInput value={raza} onIonChange={(e) => setRaza(e.detail.value!)} />
             </div>
 
             <div className="campo">
-              <label>
-                <strong>Fecha de nacimiento:</strong>
-              </label>
-              <IonInput
-                type="date"
-                value={fechaNacimiento}
-                onIonChange={(e) =>
-                  setFechaNacimiento(e.detail.value || "")
-                }
-              />
+              <label><strong>Fecha de nacimiento:</strong></label>
+              <IonInput type="date" value={fechaNacimiento} onIonChange={(e) => setFechaNacimiento(e.detail.value!)} />
             </div>
           </div>
 
-          {/* botón guardar */}
           <div className="button-container">
             <IonButton expand="block" color="primary" onClick={guardarCambios}>
               Guardar Cambios
             </IonButton>
           </div>
+
         </div>
 
-        {/* Footer */}
         <div className="franja-gruesa-inferior">
           <div className="footer-icons">
-            <IonIcon
-              icon={helpCircleOutline}
-              className="footer-icon"
-              onClick={irContacto}
-            />
-            <IonIcon
-              icon={callOutline}
-              className="footer-icon"
-              onClick={irContacto}
-            />
+            <IonIcon icon={helpCircleOutline} className="footer-icon" onClick={irContacto} />
+            <IonIcon icon={callOutline} className="footer-icon" onClick={irContacto} />
           </div>
         </div>
+
       </IonContent>
     </IonPage>
   );
