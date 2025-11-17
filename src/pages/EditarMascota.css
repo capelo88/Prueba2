@@ -1,0 +1,150 @@
+/* Fondo */
+.fondo {
+  --background: none;
+}
+
+/* Franjas azules */
+.franja-gruesa-superior,
+.franja-gruesa-inferior {
+  width: 100%;
+  height: 2cm;
+  background-color: #3880ff;
+  position: fixed;
+  z-index: 9999;
+}
+
+/* Franja superior con flecha y título */
+.franja-gruesa-superior {
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.back-icon {
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: transform 0.2s ease;
+}
+.back-icon:hover {
+  transform: scale(1.2);
+}
+
+.titulo {
+  color: #fff;
+  font-size: 1.6rem;
+  text-align: center;
+  flex-grow: 1;
+}
+
+/* Franja inferior con iconos */
+.franja-gruesa-inferior {
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 30px;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 25px;
+}
+
+.footer-icon {
+  font-size: 26px;
+  color: #0c0707;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.footer-icon:hover {
+  transform: scale(1.2);
+  color: inherit !important;
+}
+
+/* Contenedor */
+.contenedor {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Foto */
+.foto-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.foto-cuadro {
+  width: 160px;
+  height: 160px;
+  border: 3px solid var(--ion-color-primary);
+  border-radius: 10px;
+  background: #f3f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 25px;
+}
+
+.foto-cuadro img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto-cuadro span {
+  color: #777;
+  font-style: italic;
+}
+
+/* formulario */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 80%;
+}
+
+.campo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+label {
+  flex: 1;
+  font-weight: bold;
+  color: #000;
+}
+
+ion-input {
+  flex: 2;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding-left: 8px;
+}
+
+/* Botón */
+.button-container {
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 80px;
+}
+
+/* evitar fondos globales */
+.fondo {
+  background: none !important;
+}

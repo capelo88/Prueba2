@@ -1,0 +1,6 @@
+{
+  "appId": "com.tuempresa.prueba2",
+  "appName": "prueba2",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

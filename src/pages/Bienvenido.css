@@ -1,0 +1,74 @@
+.fondo {
+  --background: none;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding-top: 60px;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px #000;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000000; /* aplica a todo el h1 */
+  text-shadow: 2px 2px 5px #000; /* sombra en todo el texto */
+  margin: 0;
+}
+
+h1 span {
+  color: inherit; /* hereda el color del h1 */
+}
+
+.huellas {
+  width: 120px;
+  margin-top: 20px;
+  opacity: 0.8;
+}
+
+.franja-gruesa {
+  width: 100%;
+  height: 2cm;
+  background-color: #3880ff;
+  margin: 16px 0;
+  border-radius: 6px;
+}
+
+.franja-gruesa-inferior {
+  width: 100%;
+  height: 2cm;
+  background-color: #3880ff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20px;
+  z-index: 9999;
+}
+
+.iconos-inferiores {
+  display: flex;
+  align-items: center;
+}
+
+.btn-icon {
+  font-size: 28px;
+  color: #000;
+  margin-left: 16px;
+  cursor: pointer;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.btn-icon:hover {
+  transform: scale(1.2);
+  color: #000;
+}

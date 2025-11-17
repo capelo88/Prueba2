@@ -1,0 +1,98 @@
+.fondo {
+  --background: none;
+}
+
+/* Franjas superior e inferior */
+.franja-gruesa-superior,
+.franja-gruesa-inferior {
+  width: 100%;
+  height: 2cm;
+  background-color: #3880ff;
+  position: fixed;
+  z-index: 9999;
+}
+
+.franja-gruesa-superior {
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.franja-gruesa-inferior {
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end; /* casita al lado derecho */
+  align-items: center;
+  padding-right: 20px;
+}
+
+/* Contenedor principal */
+.contenedor {
+  margin-top: 140px; /* espacio desde franja superior */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 25px;
+}
+
+/* Título */
+.titulo-contacto {
+  color: #fff;
+  font-size: 1.6rem;
+  margin-left: 10px;
+}
+
+/* Títulos e información */
+.titulo {
+  font-size: 2rem;
+  color: black;
+  text-shadow: 2px 2px 5px #000;
+}
+
+.info {
+  font-size: 1rem;
+  color: black;
+}
+
+.nota {
+  font-style: italic;
+  font-size: 1rem;
+  color: black;
+  margin-top: 10px;
+}
+
+/* Iconos de contacto (correo y teléfono) */
+.contacto {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.icono {
+  font-size: 50px;
+  color: #3880ff;
+}
+
+/* Casita para ir a Menu */
+.iconos-inferiores {
+  display: flex;
+  align-items: center;
+}
+
+.casita {
+  font-size: 25px;
+  color: #000;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.casita:hover {
+  transform: scale(1.2);
+  color: #000000;
+}
