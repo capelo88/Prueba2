@@ -25,7 +25,7 @@ const Menu: React.FC = () => {
         {/* Contenido principal */}
         <div className="contenedor">
 
-          <h1 className="titulo">📋 Menú Principal</h1>
+          <h1 className="titulo-menu">📋 Menú Principal</h1>
             <p className="frase-menu">
             "Las mascotas son parte de nuestra familia, cuidemos de ellas ❤️"
           </p>

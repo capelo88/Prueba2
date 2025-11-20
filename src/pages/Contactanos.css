@@ -41,14 +41,14 @@
 
 /* Título */
 .titulo-contacto {
-  color: #fff;
+   color: #ffffff !important;
   font-size: 1.6rem;
   margin-left: 10px;
 }
 
 /* Títulos e información */
 .titulo {
-  font-size: 2rem;
+  font-size: 3rem;
   color: black;
   text-shadow: 2px 2px 5px #000;
 }
@@ -60,16 +60,17 @@
 
 .nota {
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: black;
   margin-top: 10px;
+  text-shadow: 2px 2px 4px #000; /* ✔ MISMA SOMBRA ESTÉTICA */
 }
 
 /* Iconos de contacto (correo y teléfono) */
 .contacto {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   font-size: 1.2rem;
   font-weight: bold;
   color: black;
@@ -98,3 +99,8 @@
   color: #000000;
 }
 
+
+.btn-flecha ion-icon {
+  color: #ffffff !important;     /* Refuerzo extra */
+  font-size: 28px;
+}

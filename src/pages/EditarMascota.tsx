@@ -75,7 +75,8 @@ const EditarMascota: React.FC = () => {
       buttons: ["OK"]
     });
 
-    history.push("/informacion-mascota");
+    history.replace("/informacion-mascota");
+    window.location.reload();
   };
 
   const regresar = () => history.goBack();
@@ -88,7 +89,7 @@ const EditarMascota: React.FC = () => {
         {/* 🔷 Franja superior */}
         <div className="franja-gruesa-superior">
           <IonIcon icon={arrowBack} className="back-icon" onClick={regresar} />
-          <h1 className="titulo">Editar Mascota</h1>
+          <h1 className="titulo-editar">Editar Mascota</h1>
         </div>
 
         {/* 🔷 Contenido */}

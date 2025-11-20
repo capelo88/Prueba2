@@ -25,8 +25,8 @@ const Contactanos: React.FC = () => {
       <IonContent fullscreen className="fondo">
         {/* Franja superior con flecha y título */}
         <div className="franja-gruesa-superior">
-          <IonButton fill="clear" onClick={regresar}>
-            <IonIcon icon={arrowBack} />
+          <IonButton fill="clear" className="btn-flecha" onClick={regresar}>
+          <IonIcon icon={arrowBack} />
           </IonButton>
           <h1 className="titulo-contacto">Contáctanos</h1>
         </div>

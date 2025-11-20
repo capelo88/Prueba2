@@ -63,7 +63,7 @@
 }
 
 .menu-texto {
-  color: black !important;
+  color: rgb(0, 0, 0) !important;
   font-weight: bold;
   margin-top: 10px;
   cursor: pointer;
@@ -129,4 +129,10 @@
   .frase-menu {
     font-size: 1.1rem;
   }
+}
+
+ion-content h1,
+.titulo {
+  color: #000 !important;
+  text-shadow: 2px 2px 5px #000;
 }

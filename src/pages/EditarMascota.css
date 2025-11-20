@@ -17,33 +17,37 @@
   z-index: 9999;
 }
 
-/* ------- Parte superior ------- */
+/* ------- PARTE SUPERIOR ------- */
 .franja-gruesa-superior {
   top: 0;
   left: 0;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   padding: 0 20px;
+  margin: 0;
+  gap: 8px;
 }
 
 .back-icon {
   font-size: 28px;
   color: #110505;
   cursor: pointer;
-  margin-right: 10px;
   transition: transform 0.2s ease;
 }
 .back-icon:hover {
   transform: scale(1.2);
 }
 
-.titulo {
-  color: #f8f0f0 !important;   /* 🔥 Título NEGRO */
-  font-size: 1.6rem;
-  text-align: center;
+.titulo-editar {
+  margin: 0;
+  padding: 0;
+  font-size: 1.8rem;
+  color: #ffffff !important;
+  text-align: left;
 }
 
-/* ------- Parte inferior ------- */
+/* ------- PARTE INFERIOR ------- */
 .franja-gruesa-inferior {
   bottom: 0;
   left: 0;
@@ -60,7 +64,7 @@
 
 .footer-icon {
   font-size: 26px;
-  color: #0c0707;
+  color: #000 !important; /* íconos negros */
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -118,83 +122,53 @@
    📝 FORMULARIO Y CAMPOS
 ============================================ */
 .formulario {
-  width: 85%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.campo {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-label {
-  color: #000 !important;     /* LABEL negro */
-  font-weight: bold;
-}
-
-/* ============================================
-   🔤 ESTILOS DE TEXTO PARA ION-INPUT
-============================================ */
-
-/* TEXTO NEGRO */
-ion-input {
-  --color: #000 !important;
-  --placeholder-color: #555 !important;
-}
-
-ion-input::part(native) {
-  color: #000 !important;      /* valor del input */
-}
-
-ion-input::part(placeholder) {
-  color: #555 !important;      /* placeholder */
-}
-
-/* =========================================
-   🎨 INPUT ESTÉTICO — MÁS ANGOSTO Y LIMPIO
-   ========================================= */
-.formulario {
-  width: 70%;                /* 🔥 REDUCE EL ANCHO GENERAL */
-  max-width: 330px;          /* 🔥 LIMITE PARA QUE SE VEA ELEGANTE */
+  width: 70%;
+  max-width: 330px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* Cada línea (label + input) */
 .campo {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-/* LABEL */
 .campo label {
   font-weight: bold;
-  color: #000;
   font-size: 0.95rem;
+  color: #000 !important;
 }
-/* ======== BORDES VISIBLES EN LOS 4 LADOS ======== */
+
+/* ============================================
+   🔤 ESTILOS DE INPUT (ION-INPUT)
+============================================ */
+
+/* CONTENEDOR */
 ion-input {
   --padding-start: 10px;
   --padding-end: 10px;
 
-  border: 2px solid #292222 !important;   /* ⭐ BORDE COMPLETO */
-  border-radius: 12px !important;          /* ⭐ ESQUINAS REDONDAS */
+  background: #ffffff !important;
+  border: 2px solid #292222 !important;
+  border-radius: 12px !important;
 
-  background: #ffffff !important;          /* ⭐ FONDO BLANCO */
-  color: #000 !important;                  /* ⭐ TEXTO NEGRO */
-
-  min-height: 40px;                        /* ⭐ ALTURA UNIFORME */
+  min-height: 40px;
   display: flex;
   align-items: center;
+
+  --color: #000 !important;
+  --placeholder-color: #555 !important;
 }
 
-/* Forzar que el input interno NO tape el borde */
+/* TEXTO INTERNO */
 ion-input::part(native) {
-  border: none !important;   /* ❌ Elimina el borde interno que oculta el tuyo */
+  border: none !important;
   color: #000 !important;
+}
+
+/* PLACEHOLDER */
+ion-input::part(placeholder) {
+  color: #555 !important;
 }
