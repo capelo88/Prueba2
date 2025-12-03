@@ -53,39 +53,72 @@ const AgregarMascota: React.FC = () => {
     }
   };
 
-  const guardar = () => {
+    const guardar = () => {
+    console.log("🔹 Click en GUARDAR");
+
     if (!nombre.trim() || !especie.trim() || !raza.trim()) {
       presentAlert({
         header: "Campos incompletos",
         message: "Por favor completa todos los campos.",
-        buttons: ["OK"]
+        buttons: ["OK"],
       });
       return;
     }
 
-    const existentes = JSON.parse(localStorage.getItem("mascotas") || "[]");
+    try {
+      let existentes: any[] = [];
+      const raw = localStorage.getItem("mascotas");
 
-    existentes.push({
-      nombre,
-      especie,
-      raza,
-      fechaNacimiento,
-      foto: foto || "assets/foto-default.png"
-    });
-
-    localStorage.setItem("mascotas", JSON.stringify(existentes));
-
-    presentAlert({
-      header: "Éxito",
-      message: "Mascota guardada correctamente.",
-      buttons: [
-        {
-          text: "OK",
-          handler: () => history.push("/informacion-mascota")
+      if (raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          existentes = Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+          console.warn("⚠️ Valor corrupto en 'mascotas', se reinicia la lista.", e);
+          existentes = [];
         }
-      ]
-    });
+      }
+
+      console.log("ANTES de guardar:", existentes);
+
+      const nuevaMascota = {
+        nombre,
+        especie,
+        raza,
+        fechaNacimiento,
+        foto: foto || "assets/foto-default.png",
+      };
+
+      existentes.push(nuevaMascota);
+
+      localStorage.setItem("mascotas", JSON.stringify(existentes));
+      console.log(
+        "DESPUÉS de guardar:",
+        JSON.parse(localStorage.getItem("mascotas") || "[]")
+      );
+
+      setCambiosPendientes(false);
+
+      presentAlert({
+        header: "Éxito",
+        message: "Mascota guardada correctamente.",
+        buttons: [
+          {
+            text: "OK",
+            handler: () => history.push("/informacion-mascota"),
+          },
+        ],
+      });
+    } catch (error) {
+      console.error("❌ Error guardando en localStorage:", error);
+      presentAlert({
+        header: "Error",
+        message: "Ocurrió un error guardando los datos.",
+        buttons: ["OK"],
+      });
+    }
   };
+
 
   const regresar = () => {
     if (cambiosPendientes) {
